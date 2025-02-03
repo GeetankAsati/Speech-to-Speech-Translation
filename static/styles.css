@@ -1,0 +1,212 @@
+/* Modern Neon Glass UI - styles.css */
+
+/* Root Variables */
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #1dd1a1;
+    --accent-color: #feca57;
+    --text-color: #f8f9fa;
+    --bg-color: #1e1e2f;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --blur-effect: blur(10px);
+}
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Glass Container */
+.container, .result-container {
+    max-width: 850px;
+    padding: 35px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: var(--blur-effect);
+    transition: transform 0.3s;
+}
+.container:hover, .result-container:hover {
+    transform: scale(1.02);
+}
+
+/* Upload & Selection Buttons */
+.upload-selector {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.selector-btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background: white; /* Ensures visibility */
+    color: black !important; /* Forces black text */
+}
+.selector-btn.primary {
+    background: var(--primary-color);
+}
+.selector-btn.secondary {
+    background: var(--secondary-color);
+}
+.selector-btn:hover {
+    filter: brightness(1.2);
+}
+
+/* Drop Zone */
+.drop-zone {
+    border: 2px dashed var(--accent-color);
+    border-radius: 16px;
+    padding: 45px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+.drop-zone:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Video Preview */
+.preview-container {
+    margin-bottom: 25px;
+    position: relative;
+}
+.preview-video {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 12px;
+    border: 2px solid var(--accent-color);
+}
+.remove-btn {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Progress Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: 16px;
+    max-width: 520px;
+    width: 90%;
+    text-align: center;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--blur-effect);
+}
+.progress-bar {
+    height: 10px;
+    background: var(--text-color);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--secondary-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Video Results */
+.video-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+.video-box {
+    background: var(--glass-bg);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: var(--blur-effect);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.video-box video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+.action-button {
+    padding: 14px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background: white;
+    color: black !important;
+}
+.download { background: var(--primary-color); }
+.download-transcript { background: var(--secondary-color); }
+.new-translation { background: var(--accent-color); color: black !important; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container, .result-container {
+        padding: 25px;
+    }
+    .video-container {
+        flex-direction: column;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Animations */
+@keyframes neonGlow {
+    0% { box-shadow: 0 0 5px var(--primary-color); }
+    50% { box-shadow: 0 0 20px var(--primary-color); }
+    100% { box-shadow: 0 0 5px var(--primary-color); }
+}
+.container, .result-container {
+    animation: neonGlow 3s infinite alternate;
+}
